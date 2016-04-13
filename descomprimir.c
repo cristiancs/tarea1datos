@@ -1,0 +1,3 @@
+char * descomprimir(){
+	return "c";
+}
