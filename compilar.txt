@@ -1,0 +1,1 @@
+gcc -o tarea pCML.c main.c

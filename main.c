@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "pCML.h"
-#include "pCML.c"
 #define MEMORIA_MAXIMA 10000000
 
 int main(){
