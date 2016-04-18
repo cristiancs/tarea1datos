@@ -21,7 +21,7 @@ char** cargarData1(char *nombre, int *i){
 	FILE *fp;
 	fp = fopen(nombre, "r");
 	if(fp == NULL){
-		printf("Archivo no existe\n");
+		printf("[ERROR] cargarData1: Archivo no existe\n");
 	}
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
@@ -52,7 +52,7 @@ char** cargarData2(char *nombre, int *i){
 	FILE *fp;
 	fp = fopen(nombre, "r");
 	if(fp == NULL){
-		printf("Archivo no existe\n");
+		printf("[ERROR] cargarData2: Archivo no existe\n");
 	}
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
@@ -76,7 +76,6 @@ char** cargarData2(char *nombre, int *i){
 		}
 		(*i)++;
 	}
-	(*i)--;
 	strings = realloc(strings, nuevotamanio);
 	fclose(fp);
 	return strings;
@@ -91,11 +90,25 @@ int main(){
 	char file2[] = "input-strings.txt";
 	char **archivos = cargarData2(file2,&cantidadArchivos);
 
-	//Llamar a descomprimir
+	//Llamar a descomprimir y guardar en otro archivo
+	FILE *fp;
+	fp = fopen("strings-descomprimidos.txt", "w");
+	int largo;
 	int i2;
+	char *returnString;
 	for (i2 = 0; i2 < cantidadArchivos; ++i2){
-		descomprimir(archivos[i2]);
+		returnString = descomprimir(archivos[i2]);
+		printf("[INFO] main: Guardando string\n");
+		fwrite(returnString, strlen(returnString) * sizeof(char), 1, fp);
+		if(i2 != cantidadArchivos-1){
+			fwrite("\n", sizeof(char), 1, fp);
+		}
+		if(strcmp(returnString,"El archivo no existe") != 0){
+			free((void *) returnString);
+		}
+		
 	}
+	fclose(fp);
 
 
 

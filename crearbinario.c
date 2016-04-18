@@ -5,18 +5,18 @@
 
 int main(){
 	unsigned int l1,l2,l3,l4;
-	l1 = 1;
-	l2 = 2;
-	l3 = 3;
-	l4 = 4;
-	unsigned char c1[2] = "a";
-	unsigned char c2[2] = "b";
-	unsigned char c3[2] = "c";
-	unsigned char c4[2] = "d";
+	l1 = 9;
+	l2 = 8;
+	l3 = 7;
+	l4 = 6;
+	unsigned char c1[2] = "z";
+	unsigned char c2[2] = "x";
+	unsigned char c3[2] = "y";
+	unsigned char c4[2] = "h";
 
 	int constante = 4;
 	FILE *fp;
-	fp = fopen("binario.bin","w");
+	fp = fopen("binario2.bin","w");
 	fwrite(&constante, sizeof(int), 1, fp); //cantidad
 
 	// repeticiones

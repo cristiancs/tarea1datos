@@ -15,11 +15,15 @@
 * string, string resultante de descomprimir el contenido del ficher
 *****/
 char * descomprimir (char *nbreArchivo){
-	printf(" %s \n",nbreArchivo );
+	printf("[INFO] descomprimir: Procesando %s \n",nbreArchivo );
 	// Leer archivo
 	FILE *fp;
 	fp = fopen(nbreArchivo, "r");
 
+	if(fp == NULL){
+		printf("[WARNING] descomprimir:El archivo %s no existe\n", nbreArchivo);
+		return "El archivo no existe";
+	}
 	int cantidad = 0;
 	fread(&cantidad,sizeof(int),1,fp);
 
@@ -34,25 +38,26 @@ char * descomprimir (char *nbreArchivo){
 	for(i = 0; i < cantidad; ++i){
 		MemoriaTotal +=Repeticiones[i];
 	}
-	printf("%d\n", MemoriaTotal);
 
 	// Pedir memoria
 
-	// char *salida = malloc(sizeof(unsigned char) * MemoriaTotal + sizeof(unsigned char));
-	// int veces = 0;
-	// for(i = 0; i < cantidad; i++){
-	// 	printf("%c\n", *salida);
-	// 	// Escribir cada letra las veces necesarias
-	// 	for ( veces = 0; i < Repeticiones[i]; ++veces){
-	// 		salida[veces] = Letras[i];
-	// 	}
-	// }
-	// salida[veces] = '\0';
-	// printf("%c\n", *salida);
+	char *salida = (char *) malloc(sizeof(unsigned char) * MemoriaTotal + sizeof(unsigned char));
+	int veces;
+	int posicion = 0;
+	for(i = 0; i < cantidad; ++i){
+		// Escribir cada letra las veces necesarias
+		for ( veces = 0; veces < Repeticiones[i]; ++veces){
+
+			salida[posicion] = Letras[i];
+			
+			posicion++;
+		}
+		
+	}
+	salida[posicion] = '\0';
+	printf("[INFO] descomprimir: Resultado es %s\n", salida);
 
 	fclose(fp);
 
-	// TEMPORAL
-	//free((void *) salida);
-	return "c";
+	return salida;
 }
