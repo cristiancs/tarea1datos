@@ -1,1 +1,1 @@
-gcc -o tarea pCML.c main.c
+gcc -o tarea descomprimir.c  pCML.c main.c
