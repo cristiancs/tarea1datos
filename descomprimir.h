@@ -9,6 +9,4 @@
 * Returns:
 * string, string resultante de descomprimir el contenido del ficher
 *****/
-char * descomprimir (char *nbreArchivo){
-	return "c";
-}
+char * descomprimir (char *nbreArchivo);

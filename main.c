@@ -2,10 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "pCML.h"
+#include "descomprimir.h"
 #define MEMORIA_MAXIMA 10000000
 
-int main(){
 
+char** cargarDataF1(int *i){
 	FILE *fp;
 	fp = fopen("string.txt", "r");
 	if(fp == NULL){
@@ -15,7 +16,7 @@ int main(){
 	char **strings;
 	//Pedimos mucha memoria para optimizar el tiempo
 	strings = malloc( sizeof(char) * MEMORIA_MAXIMA);
-	int i, nuevotamanio = 0;
+	int nuevotamanio = 0;
 	while (!feof(fp))
 	{
 		char* palabra;
@@ -24,22 +25,50 @@ int main(){
 		{
 			palabra = realloc(palabra, strlen(palabra));
 
-			strings[i] = palabra;
+			strings[*i] = palabra;
 			nuevotamanio += strlen(palabra)*sizeof(char);
 		}
-		i++;
+		(*i)++;
 	}
+	(*i)--;
 	strings = realloc(strings, nuevotamanio);
+	fclose(fp);
+	return strings;
+}
 
-	pCML(strings, i-1);
+char cargarDataF2(){
+	return "c";
+}
+
+
+
+int main(){
+
+// Función 2
+	//descomprimir();
+
+
+
+
+
+
+
+
+
+
+
+// Funcion 1
+	int cantidad = 0;
+	char **strings = cargarDataF1(&cantidad);
+	pCML(strings, cantidad);
 	//probamos
 	// int i2;
-	// for (i2 = 0; i2 < i-1; ++i2)
+	// for (i2 = 0; i2 < cantidad; ++i2)
 	// {
-	// 	printf("%i %s\n",i2, strings[i2]);
+	// 	printf("%i %s",i2, strings[i2]);
 	// }
 
-	fclose(fp);
+	
 	free((void *)strings);
 	return 0;
 }
