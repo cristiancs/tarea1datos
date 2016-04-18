@@ -95,6 +95,10 @@ int main(){
 	//Llamar a descomprimir y guardar en otro archivo
 	FILE *fp;
 	fp = fopen("strings-descomprimidos.txt", "w");
+	if(fp == NULL){
+		printf("[ERROR] main: No se pudo abrir el archivo strings-descomprimidos.txt \n");
+		exit(0);
+	}
 	int largo;
 	int i2;
 	char *returnString;
