@@ -6,9 +6,9 @@
 #define MEMORIA_MAXIMA 10000000
 
 
-char** cargarDataF1(int *i){
+char** cargarData(char* nombre, int *i){
 	FILE *fp;
-	fp = fopen("string.txt", "r");
+	fp = fopen(nombre, "r");
 	if(fp == NULL){
 		printf("Archivo no existe\n");
 	}
@@ -36,10 +36,6 @@ char** cargarDataF1(int *i){
 	return strings;
 }
 
-char cargarDataF2(){
-	return "c";
-}
-
 
 
 int main(){
@@ -59,14 +55,15 @@ int main(){
 
 // Funcion 1
 	int cantidad = 0;
-	char **strings = cargarDataF1(&cantidad);
+	char file1[] = "string.txt";
+	char **strings = cargarData(file1,&cantidad);
 	pCML(strings, cantidad);
 	//probamos
-	// int i2;
-	// for (i2 = 0; i2 < cantidad; ++i2)
-	// {
-	// 	printf("%i %s",i2, strings[i2]);
-	// }
+	int i2;
+	for (i2 = 0; i2 < cantidad; ++i2)
+	{
+		printf("%i %s",i2, strings[i2]);
+	}
 
 	
 	free((void *)strings);
