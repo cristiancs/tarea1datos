@@ -53,6 +53,6 @@ char * descomprimir (char *nbreArchivo){
 	fclose(fp);
 
 	// TEMPORAL
-	free((void *) salida);
+	//free((void *) salida);
 	return "c";
 }
