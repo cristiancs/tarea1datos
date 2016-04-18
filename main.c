@@ -5,8 +5,19 @@
 #include "descomprimir.h"
 #define MEMORIA_MAXIMA 10000000
 
-
-char** cargarData(char* nombre, int *i){
+/*****
+* char cargarData
+******
+* Abre un archivo en txt y retorna un arreglo de string con las strings encontradas
+******
+* Input:
+* char *nombre : Nombre del archivo a leer
+* int  *i      : Variable que escribe la cantidad de elementos encontrados
+******
+* Returns:
+* char**, listado de string encontradas
+*****/
+char** cargarData(char *nombre, int *i){
 	FILE *fp;
 	fp = fopen(nombre, "r");
 	if(fp == NULL){
