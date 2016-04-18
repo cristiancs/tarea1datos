@@ -22,6 +22,7 @@ char** cargarData1(char *nombre, int *i){
 	fp = fopen(nombre, "r");
 	if(fp == NULL){
 		printf("[ERROR] cargarData1: Archivo no existe\n");
+		exit(0);
 	}
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
@@ -53,6 +54,7 @@ char** cargarData2(char *nombre, int *i){
 	fp = fopen(nombre, "r");
 	if(fp == NULL){
 		printf("[ERROR] cargarData2: Archivo no existe\n");
+		exit(0);
 	}
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
