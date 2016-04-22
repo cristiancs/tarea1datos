@@ -27,37 +27,21 @@ char** cargarData1(char *nombre, int *i){
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
 	//Pedimos mucha memoria para optimizar el tiempo
-	strings = (char **)malloc( sizeof(char) * MEMORIA_MAXIMA);
-	if(strings == NULL){
-		printf("Error al solicitar RAM\n");
-		exit(0);
-	}
+	strings = malloc( sizeof(char) * MEMORIA_MAXIMA);
 	int nuevotamanio = 0;
 	while (!feof(fp))
 	{
 		char* palabra;
 		palabra = (char *) malloc(201*sizeof(char));
-		if(palabra == NULL){
-			printf("Error al solicitar RAM\n");
-			exit(0);
-		}
 		if( fgets (palabra, 201, fp)!=NULL ) 
 		{
-			size_t len = strlen(palabra);
-			strings = realloc(strings, nuevotamanio+101*sizeof(char));
-			palabra = realloc(palabra, len);
-			// http://stackoverflow.com/a/27729970/2213659
-			if (len > 0 && palabra[len-1] == '\n') {
-			 	palabra[--len] = '\0';
-			}
+			palabra = realloc(palabra, strlen(palabra));
+
 			strings[*i] = palabra;
-			nuevotamanio += len*sizeof(char);
-			free((void *)palabra);
+			nuevotamanio += strlen(palabra)*sizeof(char);
 		}
 		(*i)++;
 	}
-	strings[*i] = 0;
-	nuevotamanio+=sizeof(char);
 	(*i)--;
 	strings = realloc(strings, nuevotamanio);
 	fclose(fp);
@@ -74,20 +58,12 @@ char** cargarData2(char *nombre, int *i){
 	}
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
-	strings = (char **) malloc( sizeof(char) * 1);
-	if(strings == NULL){
-		printf("Error al solicitar RAM\n");
-		exit(0);
-	}
+	strings = malloc( sizeof(char) * 1);
 	int nuevotamanio = 0;
 	while (!feof(fp))
 	{
 		char* palabra;
 		palabra = (char *) malloc(101*sizeof(char));
-		if(palabra == NULL){
-			printf("Error al solicitar RAM\n");
-			exit(0);
-		}
 		if( fgets (palabra, 101, fp)!=NULL ) 
 		{
 			size_t len = strlen(palabra);
@@ -99,13 +75,11 @@ char** cargarData2(char *nombre, int *i){
 			}
 			strings[*i] = palabra;
 			nuevotamanio += len*sizeof(char);
-			free((void *)palabra);
 		}
 		(*i)++;
 	}
 	strings = realloc(strings, nuevotamanio);
 	fclose(fp);
-	
 	return strings;
 }
 
