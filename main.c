@@ -27,12 +27,11 @@ char** cargarData1(char *nombre, int *i){
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
 	//Pedimos mucha memoria para optimizar el tiempo
-	strings = malloc( sizeof(char) * MEMORIA_MAXIMA);
+	strings = malloc( sizeof(char) * MEMORIA_MAXIMA * 201);
 	int nuevotamanio = 0;
 	char* palabra;
 	while (!feof(fp))
 	{
-		
 		palabra = (char *) malloc(201*sizeof(char));
 		if( fgets (palabra, 201, fp)!=NULL ) 
 		{
@@ -44,7 +43,7 @@ char** cargarData1(char *nombre, int *i){
 			 	palabra[--len] = '\0';
 			}
 			strings[*i] = palabra;
-			nuevotamanio += len*sizeof(char);
+			nuevotamanio += sizeof(char) * ((int)strlen(palabra)+5);
 		}
 		(*i)++;
 	}
@@ -135,9 +134,14 @@ int main(){
 	char file1[] = "string.txt";
 	char **strings = cargarData1(file1,&cantidad);
 	int i = 0;
+	// for (i = 0; i <= cantidad; ++i)
+	// {
+	// 	printf("%d %s\n", i+1, strings[i]);
+	// }
 
 	pCML(strings, cantidad);
 	
+
 
 	
 	free((void *)strings);

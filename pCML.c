@@ -9,10 +9,13 @@ int cmpfunc(const void *a, const void *b){
 	return strcmp(pa,pb); 
 }
 int pCML (char **S, int n){
-	//n+=1;
+	// printf("%d\n", n);
 	int i=0;
 	int size;
 	qsort(S,n,sizeof(char*), cmpfunc);
+	// printf("AL MENOS ENTRO\n");
+
+	
 
 	int *cantidadPalabras = (int *)calloc(27, sizeof(int));
 	char *anterior = (char *) malloc(sizeof(char));
@@ -20,6 +23,7 @@ int pCML (char **S, int n){
 	char posletra = -1;
 	char *primeraletra = (char *) malloc(sizeof(char));
 	*anterior = 'z';
+
 
 
 
@@ -40,7 +44,8 @@ int pCML (char **S, int n){
 			// printf("Letras iguales, sumamos %d \n",cantidadPalabras[posletra]);
 		}
 	}
-	
+
+
 	free((void *)primeraletra);
 	free((void *)anterior);
 
@@ -146,11 +151,11 @@ int pCML (char **S, int n){
 	int max = 0;
 	for (i = 0; i < 27; ++i)
 	{
-		printf("%d ", nPrefijo[i]);
+		// printf("%d ", nPrefijo[i]);
 		if(nPrefijo[i] > max){
 			max = nPrefijo[i];
 		}
 	}
-	// printf("\n %d \n", max);
+	printf("\n %d \n", max);
 	return max;
 }
