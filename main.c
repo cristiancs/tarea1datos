@@ -29,9 +29,10 @@ char** cargarData1(char *nombre, int *i){
 	//Pedimos mucha memoria para optimizar el tiempo
 	strings = malloc( sizeof(char) * MEMORIA_MAXIMA);
 	int nuevotamanio = 0;
+	char* palabra;
 	while (!feof(fp))
 	{
-		char* palabra;
+		
 		palabra = (char *) malloc(201*sizeof(char));
 		if( fgets (palabra, 201, fp)!=NULL ) 
 		{
@@ -50,6 +51,7 @@ char** cargarData1(char *nombre, int *i){
 	(*i)--;
 	strings = realloc(strings, nuevotamanio);
 	fclose(fp);
+	free((void *)palabra);
 	return strings;
 }
 
@@ -65,9 +67,10 @@ char** cargarData2(char *nombre, int *i){
 	char **strings;
 	strings = malloc( sizeof(char) * 1);
 	int nuevotamanio = 0;
+	char* palabra;
 	while (!feof(fp))
 	{
-		char* palabra;
+		
 		palabra = (char *) malloc(101*sizeof(char));
 		if( fgets (palabra, 101, fp)!=NULL ) 
 		{
@@ -83,6 +86,7 @@ char** cargarData2(char *nombre, int *i){
 		}
 		(*i)++;
 	}
+	free((void *)palabra);
 	strings = realloc(strings, nuevotamanio);
 	fclose(fp);
 	return strings;

@@ -21,9 +21,7 @@ int pCML (char **S, int n){
 	char *primeraletra = (char *) malloc(sizeof(char));
 	*anterior = 'z';
 
-	// for(i=0; i < n; i++){
-	// 	printf("%d %s \n",i, S[i]);
-	// }
+
 
 
 	// Contar cuantas tenemos que empiecen con cada letra del abecedario
