@@ -47,6 +47,8 @@ char** cargarData1(char *nombre, int *i){
 		}
 		(*i)++;
 	}
+	strings[*i] = 0;
+	nuevotamanio+=sizeof(char);
 	(*i)--;
 	strings = realloc(strings, nuevotamanio);
 	fclose(fp);
