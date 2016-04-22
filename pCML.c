@@ -18,11 +18,11 @@ int pCML (char **S, int n){
 	char *anterior = malloc(sizeof(char));
 	char posletra = -1;
 	char *primeraletra = malloc(sizeof(char));
-	*anterior = 'a';
+	*anterior = 'z';
 
 
 	// Contar cuantas tenemos que empiecen con cada letra del abecedario
-	while(i < n){
+	while(i <= n){
 		*primeraletra = *S[i];
 		if( strcmp(primeraletra,anterior) != 0){
 			// printf("Letras diferentes %s %s \n",anterior,primeraletra);
@@ -43,33 +43,48 @@ int pCML (char **S, int n){
 
 
 
-	// for(i=0; i < 27; i++){
-	// 	printf("%d ",cantidadPalabras[i]);
-	// }
+	for(i=0; i < 27; i++){
+		printf("%d ",cantidadPalabras[i]);
+	}
 
 
 
-	i = 1;
+	i = 0;
 	int acumulado = 0;
 	int *nPrefijo = calloc(27, sizeof(int)); 
 	int j;
 	int algunsimilar = 0;
 	int indice = 0; // Letra ordenada en la que voy
-	while(i < n){
+	while(i <= n){
 		// Revisar que siga siendo la misma letra
 		// S[i] -> palabra
 		if((int)*S[i]-97 != indice){
 			indice = (int)*S[i]-97;
 		}
-
+		printf("%d\n", indice);
 		if(i >= acumulado){
+			nPrefijo[indice]+=1;
 			printf(" Palabra es la que inicia con la letra %d\n",indice);
 			printf(" Palabras que tienen la letra %d es %d\n",indice,cantidadPalabras[indice]);
-			for(j = 1; j <= cantidadPalabras[indice]; j++){
-				printf("  Itero letras %d\n",j);
+			for(j = 1; j <= 200; j++){
 				algunsimilar = 0;
 				// Verificar que tenga la letra
-				if(strlen(S[i]) > j && strlen(S[i+1]) > j){
+				// Si es el último
+				
+				if(i-1 == n){
+					printf("%d es el último\n", j);
+					if(S[i-1][j] != S[i][j]){
+						printf("%d es diferente a el anterior \n", j);
+						S[i] = "0\0";
+					}
+					else{
+						printf("%d es igual a el anterior \n", j);
+						algunsimilar = 1;
+					}
+				}
+
+				else if(strlen(S[i]) > j && strlen(S[i+1]) > j){
+					printf("  Itero letras %d\n",j);
 					printf("   La palabra tiene mas letras que %d\n",j);
 					// Si es el primero
 					if(i == 0){
@@ -83,21 +98,10 @@ int pCML (char **S, int n){
 							algunsimilar = 1;
 						}
 					}
-					// Si es el último
-					if(i == n){
-						printf("%d es el último\n", j);
-						if(S[i-1][j] != S[i][j]){
-							printf("%d es diferente a el anterior \n", j);
-							S[i] = "0\0";
-						}
-						else{
-							printf("%d es igual a el anterior \n", j);
-							algunsimilar = 1;
-						}
-					}
+					
 
 					// Los demas
-					if( (S[i][j] !=  S[i+1][j]) && (S[i-1][j] != S[i][j]) ){
+					else if( (S[i][j] !=  S[i+1][j]) && (S[i-1][j] != S[i][j]) ){
 						printf("%d esta entre medio y es diferente\n", j);
 						S[i] = "0\0";
 					}
