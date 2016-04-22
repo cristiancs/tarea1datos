@@ -81,7 +81,7 @@ int pCML (char **S, int n){
 				// printf("%d es el último\n", j);
 				if(S[i-1][j] != S[i][j]){
 					printf("%d es diferente a el anterior \n", j);
-					S[i] = 0;
+					S[i] = "0";
 				}
 				else{
 					// printf("%d es igual a el anterior \n", j);
@@ -97,7 +97,7 @@ int pCML (char **S, int n){
 					// printf("%d es el primero\n", j);
 					if(S[i][j] !=  S[i+1][j]){
 						printf("%d es diferente a el siguiente \n", j);
-						S[i] = 0;
+						S[i] = "0";
 					}
 					else{
 						// printf("%d es igual a el siguiente \n", j);
@@ -109,7 +109,7 @@ int pCML (char **S, int n){
 				// Los demas
 				else if( (S[i][j] !=  S[i+1][j]) && (S[i-1][j] != S[i][j]) ){
 					// printf("%d esta entre medio y es diferente\n", j);
-					S[i] = 0;
+					S[i] = "0";
 				}
 				else{
 					// printf("%d esta entre medio y es similar\n", j);
