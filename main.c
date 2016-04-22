@@ -35,10 +35,15 @@ char** cargarData1(char *nombre, int *i){
 		palabra = (char *) malloc(201*sizeof(char));
 		if( fgets (palabra, 201, fp)!=NULL ) 
 		{
-			palabra = realloc(palabra, strlen(palabra));
-
+			size_t len = strlen(palabra);
+			strings = realloc(strings, nuevotamanio+201*sizeof(char));
+			palabra = realloc(palabra, len);
+			// http://stackoverflow.com/a/27729970/2213659
+			if (len > 0 && palabra[len-1] == '\n') {
+			 	palabra[--len] = '\0';
+			}
 			strings[*i] = palabra;
-			nuevotamanio += strlen(palabra)*sizeof(char);
+			nuevotamanio += len*sizeof(char);
 		}
 		(*i)++;
 	}
@@ -125,6 +130,8 @@ int main(){
 	int cantidad = 0;
 	char file1[] = "string.txt";
 	char **strings = cargarData1(file1,&cantidad);
+	int i = 0;
+
 	pCML(strings, cantidad);
 	
 
