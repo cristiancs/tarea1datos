@@ -9,6 +9,7 @@ int cmpfunc(const void *a, const void *b){
 	return strcmp(pa,pb); 
 }
 int pCML (char **S, int n){
+	// n++;
 	// printf("%d\n", n);
 	int i=0;
 	int size;
@@ -44,7 +45,7 @@ int pCML (char **S, int n){
 			// printf("Letras iguales, sumamos %d \n",cantidadPalabras[posletra]);
 		}
 	}
-
+	// printf("MUERES DESPUES\n");
 
 	free((void *)primeraletra);
 	free((void *)anterior);
