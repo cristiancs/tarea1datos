@@ -16,13 +16,14 @@ int pCML (char **S, int n){
 
 	int *cantidadPalabras = (int *)calloc(27, sizeof(int));
 	char *anterior = (char *) malloc(sizeof(char));
+
 	char posletra = -1;
 	char *primeraletra = (char *) malloc(sizeof(char));
 	*anterior = 'z';
 
-	for(i=0; i < n; i++){
-		printf("%d %s \n",i, S[i]);
-	}
+	// for(i=0; i < n; i++){
+	// 	printf("%d %s \n",i, S[i]);
+	// }
 
 
 	// Contar cuantas tenemos que empiecen con cada letra del abecedario
@@ -59,44 +60,34 @@ int pCML (char **S, int n){
 	int algunsimilar = 0;
 	int indice = 0; // Letra ordenada en la que voy
 	int i2 = 0;
+	int indiceanterior = -1;
 	for(i=0; i < n;++i){
-		printf("--HOLA-- %d\n", i);
+		// printf("--HOLA-- %d\n", i);
 		// Revisar que siga siendo la misma letra
 		// S[i] -> palabra
-		printf("%c\n", *S[i]);
+		// printf("%c\n", *S[i]);
 		if((int)*S[i]-97 != indice){
 			indice = (int)*S[i]-97;
 		}
-		printf("Iterando %d indice %d\n", i, indice);
+		// printf("Iterando %d indice %d\n", i, indice);
 		// if(i >= acumulado){
 		nPrefijoTemp[indice]+=1;
+
 		// printf(" Palabra es la que inicia con la letra %d\n",indice);
 		// printf(" Palabras que tienen la letra %d es %d\n",indice,cantidadPalabras[indice]);
 		for(j = 1; j <= 200; j++){
 			algunsimilar = 0;
 			// Verificar que tenga la letra
-			// Si es el último
-
-			if(i == n){
-				// printf("%d es el último\n", j);
-				if(S[i-1][j] != S[i][j]){
-					printf("%d es diferente a el anterior \n", j);
-					S[i] = "0";
-				}
-				else{
-					// printf("%d es igual a el anterior \n", j);
-					algunsimilar = 1;
-				}
-			}
-
-			else if(strlen(S[i]) > j && strlen(S[i+1]) > j){
+			// printf("%s\n", S[i+1]);
+			if((int)strlen(S[i]) > j && (int)strlen(S[i+1]) > j){
+				// printf("entro\n");
 				// printf("  Itero letras %d\n",j);
 				// printf("   La palabra tiene mas letras que %d\n",j);
 				// Si es el primero
-				if(i == 0){
+				if(indice != indiceanterior){
 					// printf("%d es el primero\n", j);
 					if(S[i][j] !=  S[i+1][j]){
-						printf("%d es diferente a el siguiente \n", j);
+						// printf("%d es diferente a el siguiente \n", j);
 						S[i] = "0";
 					}
 					else{
@@ -104,34 +95,52 @@ int pCML (char **S, int n){
 						algunsimilar = 1;
 					}
 				}
-				
+				// Si es el último
 
-				// Los demas
-				else if( (S[i][j] !=  S[i+1][j]) && (S[i-1][j] != S[i][j]) ){
-					// printf("%d esta entre medio y es diferente\n", j);
-					S[i] = "0";
+				else if((int)*S[i] != (int)*S[i+1]){
+					// printf("%d es el último\n", j);
+					if(S[i-1][j] != S[i][j]){
+						// printf("%d es diferente a el anterior \n", j);
+						S[i] = "0";
+					}
+					else{
+						// printf("%d es igual a el anterior \n", j);
+						algunsimilar = 1;
+					}
 				}
 				else{
-					// printf("%d esta entre medio y es similar\n", j);
-					algunsimilar = 1;
-				}
-				if(algunsimilar == 1){
-					// printf("la letra %d tiene similar en la posicion %d\n",indice, j);
-					nPrefijoTemp[indice]+=1;
-					if(nPrefijoTemp[indice] >= nPrefijo[indice]){
-						nPrefijo[indice] = nPrefijoTemp[indice];
+					// printf("%d es intermedio\n", j);
+					if( (S[i][j] !=  S[i+1][j]) && (S[i-1][j] != S[i][j]) ){
+						// printf("%d esta entre medio y es diferente\n", j);
+						S[i] = "0";
 					}
-					
-					// printf("El acumulado de %d va en %d \n",indice, nPrefijo[indice]);
-				}
+					else{
+						// printf("%d esta entre medio y es similar\n", j);
+						algunsimilar = 1;
+					}
+				} 
 			}
+			else{
+				// printf("no entro\n");
+				break;
+			}
+			if(algunsimilar == 1){
+				// printf("la letra %d tiene similar en la posicion %d\n",indice, j);
+				nPrefijoTemp[indice]+=1;
+				if(nPrefijoTemp[indice] >= nPrefijo[indice]){
+					nPrefijo[indice] = nPrefijoTemp[indice];
+				}
+				
+				// printf("El acumulado de %d va en %d \n",indice, nPrefijo[indice]);
+			}
+			indiceanterior = indice;
 		}
 		nPrefijoTemp[indice] = 0;
 		acumulado+= cantidadPalabras[indice];
-		for (i2 = 0; i2 < 27; ++i2){
-			printf("%d ", nPrefijo[i2]);
-		}
-		printf("\n");
+		// for (i2 = 0; i2 < 27; ++i2){
+		// printf("%d ", nPrefijo[i2]);
+		// }
+		// printf("\n");
 		// }
 	}
 

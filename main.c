@@ -27,12 +27,20 @@ char** cargarData1(char *nombre, int *i){
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
 	//Pedimos mucha memoria para optimizar el tiempo
-	strings = malloc( sizeof(char) * MEMORIA_MAXIMA);
+	strings = (char **)malloc( sizeof(char) * MEMORIA_MAXIMA);
+	if(strings == NULL){
+		printf("Error al solicitar RAM\n");
+		exit(0);
+	}
 	int nuevotamanio = 0;
 	while (!feof(fp))
 	{
 		char* palabra;
 		palabra = (char *) malloc(201*sizeof(char));
+		if(palabra == NULL){
+			printf("Error al solicitar RAM\n");
+			exit(0);
+		}
 		if( fgets (palabra, 201, fp)!=NULL ) 
 		{
 			size_t len = strlen(palabra);
@@ -65,12 +73,20 @@ char** cargarData2(char *nombre, int *i){
 	}
 	// http://stackoverflow.com/questions/19068643/dynamic-memory-allocation-for-pointer-arrays 
 	char **strings;
-	strings = malloc( sizeof(char) * 1);
+	strings = (char **) malloc( sizeof(char) * 1);
+	if(strings == NULL){
+		printf("Error al solicitar RAM\n");
+		exit(0);
+	}
 	int nuevotamanio = 0;
 	while (!feof(fp))
 	{
 		char* palabra;
 		palabra = (char *) malloc(101*sizeof(char));
+		if(palabra == NULL){
+			printf("Error al solicitar RAM\n");
+			exit(0);
+		}
 		if( fgets (palabra, 101, fp)!=NULL ) 
 		{
 			size_t len = strlen(palabra);
