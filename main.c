@@ -52,6 +52,7 @@ char** cargarData1(char *nombre, int *i){
 			}
 			strings[*i] = palabra;
 			nuevotamanio += len*sizeof(char);
+			free((void *)palabra);
 		}
 		(*i)++;
 	}
@@ -98,11 +99,13 @@ char** cargarData2(char *nombre, int *i){
 			}
 			strings[*i] = palabra;
 			nuevotamanio += len*sizeof(char);
+			free((void *)palabra);
 		}
 		(*i)++;
 	}
 	strings = realloc(strings, nuevotamanio);
 	fclose(fp);
+	
 	return strings;
 }
 
