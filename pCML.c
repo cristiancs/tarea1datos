@@ -26,7 +26,6 @@ int pCML (char **S, int n){
 
 
 
-
 	// Contar cuantas tenemos que empiecen con cada letra del abecedario
 	for(i = 0;i <= n; i++){
 		*primeraletra = *S[i];
@@ -43,7 +42,7 @@ int pCML (char **S, int n){
 			// printf("Letras iguales, sumamos %d \n",cantidadPalabras[posletra]);
 		}
 	}
-	// printf("MUERES DESPUES\n");
+	// printf("LLEGO AQUÍ\n");
 
 	free((void *)primeraletra);
 	free((void *)anterior);

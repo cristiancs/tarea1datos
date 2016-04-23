@@ -32,11 +32,11 @@ char** cargarData1(char *nombre, int *i){
 	char* palabra;
 	while (!feof(fp))
 	{
-		palabra = (char *) malloc(201*sizeof(char));
-		if( fgets (palabra, 201, fp)!=NULL ) 
+		palabra = (char *) malloc(202*sizeof(char));
+		if( fgets (palabra, 202, fp)!=NULL ) 
 		{
 			size_t len = strlen(palabra);
-			strings = realloc(strings, nuevotamanio+201*sizeof(char));
+			strings = realloc(strings, nuevotamanio+202*sizeof(char));
 			palabra = realloc(palabra, len);
 			// http://stackoverflow.com/a/27729970/2213659
 			if (len > 0 && palabra[len-1] == '\n') {
