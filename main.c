@@ -1,3 +1,11 @@
+/**
+Integrantes:
+Cristian  Navarrete 201573549-2
+David     Medel     201573548-4
+Francisco Rousseau  201573546-8
+
+**/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

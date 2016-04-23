@@ -1,7 +1,5 @@
-
-
 /*****
-* char descomprimir
+* char * descomprimir
 ******
 * Esta función descomprime un archivo y returna el resultado de esta descompresión
 ******
