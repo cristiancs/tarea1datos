@@ -105,7 +105,6 @@ int main(){
 		printf("[ERROR] main: No se pudo abrir el archivo strings-descomprimidos.txt \n");
 		exit(0);
 	}
-	int largo;
 	int i2;
 	char *returnString;
 	for (i2 = 0; i2 < cantidadArchivos; ++i2){
@@ -131,11 +130,7 @@ int main(){
 	int cantidad = 0;
 	char file1[] = "string.txt";
 	char **strings = cargarData1(file1,&cantidad);
-	int i = 0;
-	// for (i = 0; i <= cantidad; ++i)
-	// {
-	// 	printf("%d %s\n", i+1, strings[i]);
-	// }
+	
 
 	pCML(strings, cantidad);
 	

@@ -12,9 +12,7 @@ int pCML (char **S, int n){
 	// n++;
 	// printf("%d\n", n);
 	int i=0;
-	int size;
 	qsort(S,n,sizeof(char*), cmpfunc);
-	// printf("AL MENOS ENTRO\n");
 
 	
 
@@ -63,7 +61,6 @@ int pCML (char **S, int n){
 	int j = 0;
 	int algunsimilar = 0;
 	int indice = 0; // Letra ordenada en la que voy
-	int i2 = 0;
 	int indiceanterior = -1;
 	for(i=0; i < n;++i){
 		// printf("--HOLA-- %d\n", i);
