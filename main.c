@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "pCML.h"
 #include "descomprimir.h"
-#define MEMORIA_MAXIMA 10000000
+#define MEMORIA_MAXIMA 10000001
 
 /*****
 * char cargarData1
