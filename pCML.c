@@ -19,7 +19,7 @@ int pCML (char **S, int n){
 	int *cantidadPalabras = (int *)calloc(27, sizeof(int));
 	char *anterior = (char *) malloc(sizeof(char));
 
-	char posletra = -1;
+	int posletra = -1;
 	char *primeraletra = (char *) malloc(sizeof(char));
 	*anterior = 'z';
 
